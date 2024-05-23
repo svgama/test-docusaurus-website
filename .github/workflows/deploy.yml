@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-    paths: [test-docusaurus-website/**]
     # Review gh actions docs if you want to further define triggers, paths, etc
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
@@ -20,9 +19,9 @@ jobs:
         with:
           node-version: 18
           cache: yarn
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        working-directory: test-docusaurus-website
         run: yarn install --frozen-lockfile
       - name: Build website
         run: yarn build
